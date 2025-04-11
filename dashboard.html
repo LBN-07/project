@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Sidebar Menu -->
+   <div class="main">
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="attendance.html">Attendance</a></li>
+      <li><a href="materials.html">Materials</a></li>
+    </ul>
+  </div>
+
+  <header class="navbar">
+    <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+    <!-- Moved profile section to the left side -->
+    <div class="nav-left" >Student Dashboard</div>
+
+    <div class="profile">
+      
+      <img id="profileImageDisplay" class="profile-image" src="" alt="Profile Image">
+      <span class="roll-display" id="rollNoDisplay">Unknown</span>
+    </div>
+</div>
+  </header>
+
+  <!-- Background Overlay -->
+  <div class="background-overlay">
+    <div class="dashboard">
+      <h1>Welcome, <span id="usernameDisplay">Guest</span></h1>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+
+    const username = localStorage.getItem("username");
+    const rollNo = localStorage.getItem("studentRollNo");
+    const profileImage = localStorage.getItem("studentProfileImage");
+
+    document.getElementById("usernameDisplay").textContent = username || "Guest";
+    document.getElementById("rollNoDisplay").textContent = rollNo || "Unknown";
+    document.getElementById("profileImageDisplay").src = profileImage || "https://via.placeholder.com/50";
+
+    // Close sidebar when any link is clicked
+    document.querySelectorAll(".sidebar a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("sidebar").classList.remove("active");
+      });
+    });
+  </script>
+</body>
+</html>

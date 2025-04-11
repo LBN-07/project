@@ -1,0 +1,27 @@
+<!-- sign-up.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AITS Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-overlay">
+        <div class="auth-container">
+            <h1 class="title">Sign Up</h1>
+            <form id="signUpForm" class="form">
+                <input type="text" id="username" class="input-box" placeholder="Enter Username" required>
+                <input type="text" id="rollNo" class="input-box" placeholder="Enter Student Roll No" required>
+                <input type="text" id="phoneNo" class="input-box" placeholder="Enter Phone Number" required>
+                <input type="password" id="password" class="input-box" placeholder="Create Password" required>
+                <input type="file" id="profileImage" class="input-box" accept="image/*" required>
+                <button type="submit" class="submit-button">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Log In</a></p>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
