@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <body>
+        <div class="main">
+            <div class="sidebar" id="sidebar">
+              <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="materials.html">Materials</a></li>
+              </ul>
+            </div>
+          
+            <header class="navbar">
+              <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+              <!-- Moved profile section to the left side -->
+              <div class="nav-left" >Student Dashboard</div>
+          
+              <div class="profile">
+                
+                <img id="profileImageDisplay" class="profile-image" src="" alt="Profile Image">
+                <span class="roll-display" id="rollNoDisplay">Unknown</span>
+              </div>
+          </div>
+            </header>
+      
+        <!-- Background Overlay -->
+        <div class="background-overlay">
+          <div class="dashboard">
+            <h1>Attendance Report</h1>
+      
+            <div class="attendance-box">
+              <h2>Current Semester</h2>
+              <p id="currentSemester">Loading...</p>
+            </div>
+      
+            <div class="attendance-box">
+              <h2>Previous Semester</h2>
+              <p id="previousSemester">Loading...</p>
+            </div>
+          </div>
+        </div>
+      
+        <script>
+          function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+          }
+      
+          const rollNo = localStorage.getItem("studentRollNo");
+          const profileImage = localStorage.getItem("studentProfileImage");
+      
+          document.getElementById("rollNoDisplay").textContent = rollNo || "Unknown";
+          document.getElementById("profileImageDisplay").src = profileImage || "https://via.placeholder.com/50";
+      
+          const attendanceData = {
+            "12345": {
+              current: "85%",
+              previous: "78%"
+            },
+            "67890": {
+              current: "92%",
+              previous: "89%"
+            }
+          };
+      
+          const studentAttendance = attendanceData[rollNo];
+          document.getElementById("currentSemester").textContent = studentAttendance?.current || "No data available";
+          document.getElementById("previousSemester").textContent = studentAttendance?.previous || "No data available";
+      
+          // Close sidebar when any link is clicked
+          document.querySelectorAll(".sidebar a").forEach(link => {
+            link.addEventListener("click", () => {
+              document.getElementById("sidebar").classList.remove("active");
+            });
+          });
+        </script>
+      </body>
+      
+</body>
+</html>

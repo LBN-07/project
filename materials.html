@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Materials</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="main">
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="materials.html">Materials</a></li>
+      </ul>
+    </div>
+
+    <!-- Header/Navbar -->
+    <header class="navbar">
+      <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+      <div class="nav-left">Student Dashboard</div>
+      <div class="profile">
+        <img id="profileImageDisplay" class="profile-image" src="" alt="Profile Image">
+        <span class="roll-display" id="rollNoDisplay">Unknown</span>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="background-overlay">
+      <div class="dashboard">
+        <h1>Materials</h1>
+        <p style="color: white;">Here you can upload or view study materials (PDFs, links, etc.).</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    const rollNo = localStorage.getItem("studentRollNo");
+    const profileImage = localStorage.getItem("studentProfileImage");
+
+    document.getElementById("rollNoDisplay").textContent = rollNo || "Unknown";
+    document.getElementById("profileImageDisplay").src = profileImage || "https://via.placeholder.com/50";
+
+    // Close sidebar when a link is clicked
+    document.querySelectorAll(".sidebar a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("sidebar").classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
